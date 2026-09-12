@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FolioForge — Custom Portfolio Building Service</title>
+  <meta name="description" content="Choose a design. We build the portfolio. Custom portfolio website design and development for designers, engineers, and creative professionals.">
+  
+  <!-- Favicon with FolioForge Logo -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230A0B10'/><path d='M7.5 7C7.5 6.45 7.95 6 8.5 6H21.5C22.05 6 22.5 6.45 22.5 7V9.5C22.5 10.05 22.05 10.5 21.5 10.5H12.5V13.5H19C19.55 13.5 20 13.95 20 14.5V16.5C20 17.05 19.55 17.5 19 17.5H12.5V24.5C12.5 25.05 12.05 25.5 11.5 25.5H8.5C7.95 25.5 7.5 25.05 7.5 24.5V7Z' fill='%230D99FF'/><path d='M15 13.5H23.5C24.05 13.5 24.5 13.95 24.5 14.5V16.5C24.5 17.05 24.05 17.5 23.5 17.5H17.5V20H21.5C22.05 20 22.5 20.45 22.5 21V23C22.5 23.55 22.05 24 21.5 24H15V13.5Z' fill='%2300F5D4'/></svg>">
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['class', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              blue: '#0D99FF',
+              blueHover: '#007BE5',
+              purple: '#9747FF',
+              green: '#0ACF83',
+              orange: '#FF7262',
+              red: '#F24E1E',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-white dark:bg-[#121212] text-[#1E1E1E] dark:text-[#F5F5F5] antialiased transition-colors duration-200">
+
+  <!-- 1. Global Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-[#121212]/95 backdrop-blur-md border-b border-[#E6E6E6] dark:border-[#262626]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-6">
+        <a href="#" class="flex items-center gap-3 group">
+          <!-- Premium Geometric FF Icon -->
+          <div class="w-9 h-9 rounded-xl bg-[#0C0D12] p-1.5 flex items-center justify-center shadow-md border border-neutral-800 group-hover:border-[#0D99FF]/60 transition-all">
+            <svg class="w-full h-full" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="ff-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00F5D4"/>
+                  <stop offset="50%" stop-color="#0D99FF"/>
+                  <stop offset="100%" stop-color="#7928CA"/>
+                </linearGradient>
+                <linearGradient id="ff-accent" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#0D99FF"/>
+                  <stop offset="100%" stop-color="#FFFFFF"/>
+                </linearGradient>
+              </defs>
+              <path d="M7 6C7 5.44772 7.44772 5 8 5H22C22.5523 5 23 5.44772 23 6V8.5C23 9.05228 22.5523 9.5 22 9.5H12V12.5H19C19.5523 12.5 20 12.9477 20 13.5V15.5C20 16.0523 19.5523 16.5 19 16.5H12V25C12 25.5523 11.5523 26 11 26H8C7.44772 26 7 25.5523 7 25V6Z" fill="url(#ff-glow)"/>
+              <path d="M14.5 12.5H24C24.5523 12.5 25 12.9477 25 13.5V15.5C25 16.0523 24.5523 16.5 24 16.5H17.5V19.5H22C22.5523 19.5 23 19.9477 23 20.5V22.5C23 23.0523 22.5523 23.5 22 23.5H14.5V12.5Z" fill="url(#ff-accent)" fill-opacity="0.9"/>
+            </svg>
+          </div>
+          <div class="flex items-baseline gap-2">
+            <span class="font-extrabold text-xl tracking-tight text-neutral-900 dark:text-white">Folio<span class="text-[#0D99FF]">Forge</span></span>
+            <span class="text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-[#0D99FF] border border-[#0D99FF]/30">Portfolio Studio</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+          <a href="#" class="px-3 py-1.5 rounded-md hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">Explore</a>
+          <a href="#" class="px-3 py-1.5 rounded-md hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">Design systems</a>
+          <a href="#" class="px-3 py-1.5 rounded-md hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">Visual assets</a>
+          <a href="#" class="px-3 py-1.5 rounded-md text-neutral-900 dark:text-white bg-neutral-100 dark:bg-neutral-800 font-semibold">Portfolio</a>
+          <a href="#" class="px-3 py-1.5 rounded-md hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">Wireframes</a>
+        </nav>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="flex-1 max-w-md mx-2 relative">
+        <div class="relative flex items-center">
+          <i data-lucide="search" class="w-4 h-4 absolute left-3 text-neutral-400 pointer-events-none"></i>
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Search portfolio designs, styles, or frameworks..." 
+            oninput="handleSearch(this.value)"
+            class="w-full pl-9 pr-14 py-2 bg-neutral-100 dark:bg-[#1E1E1E] text-sm text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 rounded-full border border-transparent focus:border-[#0D99FF] focus:bg-white dark:focus:bg-[#181818] outline-none transition-all shadow-inner"
+          />
+          <span class="absolute right-3 hidden sm:inline-flex items-center gap-0.5 text-[11px] font-medium text-neutral-400 bg-neutral-200/60 dark:bg-neutral-700/60 px-1.5 py-0.5 rounded">
+            ⌘K
+          </span>
+        </div>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="flex items-center gap-2.5">
+        <!-- Theme Switcher -->
+        <button 
+          onclick="toggleTheme()" 
+          class="p-2 rounded-full text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+          title="Toggle Light / Dark theme"
+        >
+          <i id="theme-icon" data-lucide="moon" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Auto-Generate Template CTA -->
+        <button 
+          onclick="if (window.FolioForgeGenerator) FolioForgeGenerator.addDynamicTemplate()"
+          class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200 shadow-sm border border-neutral-200 dark:border-neutral-700 transition-all active:scale-95 cursor-pointer"
+          title="Programmatically generate an original portfolio template and matching description"
+        >
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#0D99FF]"></i>
+          <span>Auto-Generate Design</span>
+        </button>
+
+        <!-- Publish / Share CTA -->
+        <button 
+          onclick="openPortfolioPricingModal('ff-001')"
+          class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#0D99FF] hover:bg-[#007BE5] text-white shadow-sm transition-all active:scale-95"
+        >
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          <span>Build Portfolio</span>
+        </button>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- 2. Main Page Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16">
+
+    <!-- Breadcrumb & Centered Hero Intro Section -->
+    <div class="mb-10 sm:mb-12 text-center pt-2 sm:pt-4">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center justify-center gap-2 text-xs text-neutral-500 mb-4">
+        <a href="#" class="hover:text-neutral-900 dark:hover:text-white transition-colors">Home</a>
+        <i data-lucide="chevron-right" class="w-3 h-3 text-neutral-400"></i>
+        <span class="text-neutral-900 dark:text-neutral-200 font-medium">Portfolio designs</span>
+      </nav>
+
+      <!-- Centered Title & Dynamic Badge -->
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-3">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-neutral-900 dark:text-white leading-tight">
+          Portfolio Designs
+        </h1>
+        <span id="results-count" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 border border-neutral-200/80 dark:border-neutral-700/80 shadow-sm self-center">
+          100 designs
+        </span>
+      </div>
+
+      <!-- Centered Description -->
+      <p class="text-sm sm:text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl lg:max-w-[800px] mx-auto leading-relaxed text-center font-normal">
+        Choose a design. We build the portfolio. Get a high-converting, fully responsive portfolio website custom-tailored to showcase your work.
+      </p>
+
+      <!-- Resource Type Tabs (Centered under Intro) -->
+      <div class="mt-6 sm:mt-8 flex justify-center">
+        <div class="inline-flex items-center p-1 rounded-xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-200/60 dark:border-neutral-700/60 shadow-sm">
+          <button class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-[#1E1E1E] text-neutral-900 dark:text-white shadow-sm transition-all">
+            Files
+          </button>
+          <button onclick="showToast('Plugins catalog coming soon!')" class="px-4 py-1.5 rounded-lg text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
+            Plugins
+          </button>
+          <button onclick="showToast('Widgets catalog coming soon!')" class="px-4 py-1.5 rounded-lg text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
+            Widgets
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Filter & Sort Toolbar -->
+    <div class="pb-6 border-b border-neutral-200 dark:border-neutral-800 mb-8 space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        
+        <!-- Price Range Selector -->
+        <div class="flex items-center p-1 bg-neutral-100 dark:bg-neutral-800 rounded-lg text-xs">
+          <button onclick="setPrice('all')" data-price="all" class="price-btn px-3 py-1 rounded-md font-medium bg-white dark:bg-neutral-700 shadow-sm text-neutral-900 dark:text-white transition-all">
+            All Prices
+          </button>
+          <button onclick="setPrice('under2500')" data-price="under2500" class="price-btn px-3 py-1 rounded-md font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-all">
+            Under ₹2,500
+          </button>
+          <button onclick="setPrice('2500plus')" data-price="2500plus" class="price-btn px-3 py-1 rounded-md font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-all">
+            ₹2,500 &amp; Above
+          </button>
+        </div>
+
+        <!-- Sort Dropdown -->
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-neutral-500 font-medium">Sort by:</span>
+          <select 
+            id="sort-select" 
+            onchange="setSort(this.value)"
+            class="text-xs font-medium bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg px-3 py-1.5 text-neutral-800 dark:text-neutral-200 outline-none focus:border-[#0D99FF]"
+          >
+            <option value="popular">Popular</option>
+            <option value="cloned">Most Cloned</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Tag Carousel -->
+      <div class="relative flex items-center">
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 w-full">
+          <button onclick="setTag('All')" data-tag="All" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 transition-colors">
+            All
+          </button>
+          <button onclick="setTag('UX/UI')" data-tag="UX/UI" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            UX/UI
+          </button>
+          <button onclick="setTag('Bento Grid')" data-tag="Bento Grid" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            Bento Grid
+          </button>
+          <button onclick="setTag('Case Study')" data-tag="Case Study" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            Case Study
+          </button>
+          <button onclick="setTag('Developer')" data-tag="Developer" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            Developer
+          </button>
+          <button onclick="setTag('Minimalist')" data-tag="Minimalist" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            Minimalist
+          </button>
+          <button onclick="setTag('Editorial')" data-tag="Editorial" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            Editorial
+          </button>
+          <button onclick="setTag('3D &amp; Visual')" data-tag="3D &amp; Visual" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            3D &amp; Visual
+          </button>
+          <button onclick="setTag('Dark Mode')" data-tag="Dark Mode" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            Dark Mode
+          </button>
+          <button onclick="setTag('Creative Director')" data-tag="Creative Director" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            Creative Director
+          </button>
+          <button onclick="setTag('Resume &amp; CV')" data-tag="Resume &amp; CV" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            Resume &amp; CV
+          </button>
+          <button onclick="setTag('Agency')" data-tag="Agency" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            Agency
+          </button>
+          <button onclick="setTag('AI Engineer')" data-tag="AI Engineer" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            AI Engineer
+          </button>
+          <button onclick="setTag('Generative AI')" data-tag="Generative AI" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            Generative AI
+          </button>
+          <button onclick="setTag('Full Stack Developer')" data-tag="Full Stack Developer" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            Full Stack Developer
+          </button>
+          <button onclick="setTag('Creative Developer')" data-tag="Creative Developer" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            Creative Developer
+          </button>
+          <button onclick="setTag('Student')" data-tag="Student" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            Student
+          </button>
+          <button onclick="setTag('Cyberpunk')" data-tag="Cyberpunk" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            Cyberpunk
+          </button>
+          <button onclick="setTag('Photographer')" data-tag="Photographer" class="tag-pill flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+            Photographer
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Template Cards Grid -->
+    <div id="templates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+      <!-- Injected dynamically via app.js -->
+    </div>
+
+    <!-- 5. Pagination Controls (21 templates per page) -->
+    <div id="pagination-container" class="mb-16">
+      <!-- Injected dynamically via app.js -->
+    </div>
+
+    <!-- 6. Rich Content & Editorial Section (Centered & Premium Redesign) -->
+    <section class="border-t border-neutral-200 dark:border-neutral-800 pt-16 pb-6 mb-16">
+      <div class="max-w-4xl mx-auto text-center">
+        <!-- Eyebrow Badge -->
+        <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold bg-[#0D99FF]/10 text-[#0D99FF] dark:bg-[#0D99FF]/20 border border-[#0D99FF]/20 mb-4 shadow-sm">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          <span>Custom Portfolio Craftsmanship</span>
+        </div>
+
+        <!-- Centered Main Title -->
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-neutral-900 dark:text-white mb-5 leading-tight">
+          Professional Portfolio Development
+        </h2>
+        
+        <!-- Centered Lead Paragraphs -->
+        <div class="text-neutral-600 dark:text-neutral-400 space-y-4 max-w-2xl mx-auto leading-relaxed text-sm sm:text-base mb-10">
+          <p>
+            Putting together a portfolio means making countless technical and design decisions: layout, responsiveness, code optimization, and hosting. <strong class="text-neutral-900 dark:text-neutral-100 font-semibold">FolioForge handles everything for you.</strong> Select your favorite portfolio design, and our dedicated team customizes and deploys your personalized portfolio website.
+          </p>
+          <p class="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400">
+            Every design in our catalog is engineered for high impact. Whether you are a UX/UI designer, full-stack engineer, 3D artist, or creative director, we craft a custom portfolio website that positions your work at the highest standard.
+          </p>
+        </div>
+
+        <!-- 3 Feature Highlight Cards (Centered Grid) -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-3xl mx-auto text-center mb-10">
+          <div class="p-6 rounded-2xl bg-neutral-50 dark:bg-[#181818] border border-neutral-200/80 dark:border-neutral-800 transition-all hover:border-[#0D99FF]/50 hover:shadow-md group">
+            <div class="w-12 h-12 rounded-2xl bg-[#0D99FF]/10 text-[#0D99FF] flex items-center justify-center mx-auto mb-3.5 transition-transform group-hover:scale-110">
+              <i data-lucide="layout" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-bold text-sm text-neutral-900 dark:text-white mb-1.5">Bespoke Design</h3>
+            <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">Tailored specifically to your case studies, personal aesthetic, and voice.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-neutral-50 dark:bg-[#181818] border border-neutral-200/80 dark:border-neutral-800 transition-all hover:border-emerald-500/50 hover:shadow-md group">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center mx-auto mb-3.5 transition-transform group-hover:scale-110">
+              <i data-lucide="zap" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-bold text-sm text-neutral-900 dark:text-white mb-1.5">100/100 Performance</h3>
+            <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">Blazing-fast load times, fluid micro-interactions, and search engine optimization.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-neutral-50 dark:bg-[#181818] border border-neutral-200/80 dark:border-neutral-800 transition-all hover:border-purple-500/50 hover:shadow-md group">
+            <div class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-500 flex items-center justify-center mx-auto mb-3.5 transition-transform group-hover:scale-110">
+              <i data-lucide="globe" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-bold text-sm text-neutral-900 dark:text-white mb-1.5">Ready to Launch</h3>
+            <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">Turnkey custom domain linking, SSL security, and reliable global hosting included.</p>
+          </div>
+        </div>
+
+        <!-- Expandable Read More Box (Centered Card) -->
+        <div class="max-w-2xl mx-auto text-left">
+          <details class="group cursor-pointer rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white dark:bg-[#181818] p-5 transition-all hover:border-[#0D99FF]/60 hover:shadow-sm">
+            <summary class="font-semibold text-xs sm:text-sm text-[#0D99FF] flex items-center justify-between list-none select-none">
+              <span class="flex items-center gap-2">
+                <i data-lucide="book-open" class="w-4 h-4 text-[#0D99FF]"></i>
+                <span>Read more about choosing &amp; customizing templates</span>
+              </span>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-neutral-400 transition-transform duration-200 group-open:rotate-180"></i>
+            </summary>
+            <div class="pt-4 space-y-3 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 border-t border-neutral-100 dark:border-neutral-800/80 mt-3 leading-relaxed">
+              <p>
+                Open a template that matches your style and the type of work you're showcasing, then duplicate it to your drafts. From there, swap in your own projects, update the copy to reflect your experience, and adjust colors, typography, and imagery to make it feel like yours. Many templates include placeholder content that shows you exactly where your work will live and how it will be presented.
+              </p>
+              <p>
+                These portfolio templates can help whether you're a student building your first portfolio, a freelancer refreshing your online presence, or a job seeker preparing for interviews. Instead of starting from a blank canvas, you start with structure—so you can focus on what actually matters: presenting your work in a way that connects with the people you want to reach.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Interactive Accordion FAQ Section (Centered & Premium Redesign) -->
+    <section class="border-t border-neutral-200 dark:border-neutral-800 pt-16 mb-20">
+      <div class="max-w-4xl mx-auto">
+        <!-- Centered Header -->
+        <div class="text-center mb-10">
+          <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-600 dark:bg-emerald-950/60 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 mb-3.5 shadow-sm">
+            <i data-lucide="help-circle" class="w-3.5 h-3.5"></i>
+            <span>Got Questions?</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-neutral-900 dark:text-white mb-3 leading-tight">
+            Frequently asked questions
+          </h2>
+          <p class="text-sm sm:text-base text-neutral-500 dark:text-neutral-400 max-w-xl mx-auto">
+            Everything you need to know about FolioForge portfolio templates and custom build process.
+          </p>
+        </div>
+
+        <!-- Centered Accordion Cards -->
+        <div class="max-w-3xl mx-auto space-y-3.5">
+          <!-- FAQ 1 -->
+          <details class="group rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#1A1A1A] overflow-hidden p-5 transition-all duration-200 hover:border-[#0D99FF]/40 hover:shadow-sm cursor-pointer">
+            <summary class="flex items-center justify-between cursor-pointer font-semibold text-sm sm:text-base text-neutral-900 dark:text-white list-none select-none">
+              <span>How do I choose between a single-page and multi-page portfolio template?</span>
+              <div class="w-6 h-6 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center flex-shrink-0 ml-3 transition-colors group-hover:bg-[#0D99FF]/10 group-hover:text-[#0D99FF]">
+                <i data-lucide="chevron-down" class="w-4 h-4 text-neutral-500 transition-transform duration-200 group-open:rotate-180"></i>
+              </div>
+            </summary>
+            <p class="mt-3.5 pt-3.5 border-t border-neutral-100 dark:border-neutral-800/80 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Single-page templates work well for concise presentations where visitors can scroll through everything quickly. Multi-page templates give you room for detailed case studies and separate sections for about, contact, and archives.
+            </p>
+          </details>
+
+          <!-- FAQ 2 -->
+          <details class="group rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#1A1A1A] overflow-hidden p-5 transition-all duration-200 hover:border-[#0D99FF]/40 hover:shadow-sm cursor-pointer">
+            <summary class="flex items-center justify-between cursor-pointer font-semibold text-sm sm:text-base text-neutral-900 dark:text-white list-none select-none">
+              <span>What's the difference between a portfolio template and a portfolio UI kit?</span>
+              <div class="w-6 h-6 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center flex-shrink-0 ml-3 transition-colors group-hover:bg-[#0D99FF]/10 group-hover:text-[#0D99FF]">
+                <i data-lucide="chevron-down" class="w-4 h-4 text-neutral-500 transition-transform duration-200 group-open:rotate-180"></i>
+              </div>
+            </summary>
+            <p class="mt-3.5 pt-3.5 border-t border-neutral-100 dark:border-neutral-800/80 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              A portfolio template gives you a complete layout with structure, sections, and visual hierarchy already in place. A portfolio UI kit provides reusable components (cards, navbars, hero frames) you can assemble into your own design.
+            </p>
+          </details>
+
+          <!-- FAQ 3 -->
+          <details class="group rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#1A1A1A] overflow-hidden p-5 transition-all duration-200 hover:border-[#0D99FF]/40 hover:shadow-sm cursor-pointer">
+            <summary class="flex items-center justify-between cursor-pointer font-semibold text-sm sm:text-base text-neutral-900 dark:text-white list-none select-none">
+              <span>How do I make my portfolio stand out?</span>
+              <div class="w-6 h-6 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center flex-shrink-0 ml-3 transition-colors group-hover:bg-[#0D99FF]/10 group-hover:text-[#0D99FF]">
+                <i data-lucide="chevron-down" class="w-4 h-4 text-neutral-500 transition-transform duration-200 group-open:rotate-180"></i>
+              </div>
+            </summary>
+            <p class="mt-3.5 pt-3.5 border-t border-neutral-100 dark:border-neutral-800/80 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Let your work do the heavy lifting. Choose a template that complements your projects without competing with them. Write clear, specific descriptions explaining your thinking and impact, and keep layouts uncluttered.
+            </p>
+          </details>
+
+          <!-- FAQ 4 -->
+          <details class="group rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#1A1A1A] overflow-hidden p-5 transition-all duration-200 hover:border-[#0D99FF]/40 hover:shadow-sm cursor-pointer">
+            <summary class="flex items-center justify-between cursor-pointer font-semibold text-sm sm:text-base text-neutral-900 dark:text-white list-none select-none">
+              <span>Can I use a portfolio template to build an actual website?</span>
+              <div class="w-6 h-6 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center flex-shrink-0 ml-3 transition-colors group-hover:bg-[#0D99FF]/10 group-hover:text-[#0D99FF]">
+                <i data-lucide="chevron-down" class="w-4 h-4 text-neutral-500 transition-transform duration-200 group-open:rotate-180"></i>
+              </div>
+            </summary>
+            <p class="mt-3.5 pt-3.5 border-t border-neutral-100 dark:border-neutral-800/80 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Yes, absolutely! FolioForge is a custom portfolio building service. You choose the design you love, and our team builds, customizes, and optimizes your live portfolio website with your case studies, projects, and custom domain.
+            </p>
+          </details>
+        </div>
+
+        <!-- Centered Quick Consultation CTA below FAQs -->
+        <div class="mt-10 text-center p-6 rounded-2xl bg-neutral-100/70 dark:bg-[#161616] border border-neutral-200/80 dark:border-neutral-800 max-w-xl mx-auto shadow-sm">
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mb-3.5">Still have questions or need a personalized quote?</p>
+          <button onclick="openWhatsApp('ff-001')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold shadow-md transition-all active:scale-95 cursor-pointer">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+            <span>Ask Us Directly on WhatsApp (+91 92263 93146)</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 8. Comprehensive Footer (Centered & Modern Redesign) -->
+  <footer class="bg-neutral-50 dark:bg-[#0C0C0C] border-t border-neutral-200 dark:border-neutral-800 text-xs text-neutral-500 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Centered Top Brand Banner -->
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <!-- Centered Logo -->
+        <div class="inline-flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-xl bg-[#0C0D12] p-1.5 flex items-center justify-center shadow-md border border-neutral-800">
+            <svg class="w-full h-full" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 6C7 5.45 7.45 5 8 5H22C22.55 5 23 5.45 23 6V8.5C23 9.05 22.55 9.5 22 9.5H12V12.5H19C19.55 12.5 20 12.95 20 13.5V15.5C20 16.05 19.55 16.5 19 16.5H12V25C12 25.55 11.55 26 11 26H8C7.45 26 7 25.55 7 25V6Z" fill="#0D99FF"/>
+              <path d="M14.5 12.5H24C24.55 12.5 25 12.95 25 13.5V15.5C25 16.05 24.55 16.5 24 16.5H17.5V19.5H22C22.55 19.5 23 19.95 23 20.5V22.5C23 23.05 22.55 23.5 22 23.5H14.5V12.5Z" fill="#00F5D4"/>
+            </svg>
+          </div>
+          <span class="font-extrabold text-2xl tracking-tight text-neutral-900 dark:text-white">Folio<span class="text-[#0D99FF]">Forge</span></span>
+        </div>
+
+        <!-- Centered Description -->
+        <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-lg mx-auto mb-6">
+          The premier custom portfolio building service for designers, engineers, and creative professionals. Pick your design, and we build the portfolio.
+        </p>
+
+        <!-- Centered Feature Trust Pills -->
+        <div class="flex flex-wrap items-center justify-center gap-2 text-[11px] font-medium text-neutral-600 dark:text-neutral-300">
+          <span class="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 shadow-sm flex items-center gap-1.5">
+            <i data-lucide="clock" class="w-3.5 h-3.5 text-[#0D99FF]"></i>
+            <span>3–5 Days Turnaround</span>
+          </span>
+          <span class="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 shadow-sm flex items-center gap-1.5">
+            <i data-lucide="globe" class="w-3.5 h-3.5 text-emerald-500"></i>
+            <span>Custom Domain &amp; SSL</span>
+          </span>
+          <span class="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 shadow-sm flex items-center gap-1.5">
+            <i data-lucide="message-circle" class="w-3.5 h-3.5 text-[#25D366]"></i>
+            <span>1-on-1 WhatsApp Support</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Centered 4-Column Links Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center mb-14">
+        <!-- Col 1: Use Cases -->
+        <div class="flex flex-col items-center">
+          <div class="font-bold text-xs uppercase tracking-wider text-neutral-900 dark:text-white mb-4">Use Cases</div>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="hover:text-[#0D99FF] transition-colors">Portfolio Design</a></li>
+            <li><a href="#" class="hover:text-[#0D99FF] transition-colors">UI &amp; UX Prototyping</a></li>
+            <li><a href="#" class="hover:text-[#0D99FF] transition-colors">Design Systems</a></li>
+            <li><a href="#" class="hover:text-[#0D99FF] transition-colors">Developer Handoff</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 2: Explore -->
+        <div class="flex flex-col items-center">
+          <div class="font-bold text-xs uppercase tracking-wider text-neutral-900 dark:text-white mb-4">Explore</div>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="hover:text-[#0D99FF] transition-colors">Popular Files</a></li>
+            <li><a href="#" class="hover:text-[#0D99FF] transition-colors">Trending Creators</a></li>
+            <li><a href="#" class="hover:text-[#0D99FF] transition-colors">Design Kits</a></li>
+            <li><a href="#" class="hover:text-[#0D99FF] transition-colors">Typography Kits</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Resources -->
+        <div class="flex flex-col items-center">
+          <div class="font-bold text-xs uppercase tracking-wider text-neutral-900 dark:text-white mb-4">Resources</div>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="hover:text-[#0D99FF] transition-colors">Service Overview</a></li>
+            <li><a href="#" class="hover:text-[#0D99FF] transition-colors">Custom Development Process</a></li>
+            <li><a href="#" class="hover:text-[#0D99FF] transition-colors">Licensing FAQ</a></li>
+            <li><a href="#" class="hover:text-[#0D99FF] transition-colors">Affiliate Program</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Company -->
+        <div class="flex flex-col items-center">
+          <div class="font-bold text-xs uppercase tracking-wider text-neutral-900 dark:text-white mb-4">Company</div>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="hover:text-[#0D99FF] transition-colors">About FolioForge</a></li>
+            <li><a href="#" class="hover:text-[#0D99FF] transition-colors">Careers</a></li>
+            <li><a href="#" class="hover:text-[#0D99FF] transition-colors">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-[#0D99FF] transition-colors">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Centered Bottom Bar -->
+      <div class="pt-8 border-t border-neutral-200 dark:border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-4xl mx-auto text-center sm:text-left">
+        <div class="text-xs text-neutral-500 dark:text-neutral-400">
+          &copy; 2026 FolioForge, Inc. All rights reserved.
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-neutral-500 dark:text-neutral-400">
+          <span class="hover:text-[#0D99FF] cursor-pointer transition-colors">Security</span>
+          <span class="text-neutral-300 dark:text-neutral-700">•</span>
+          <span class="hover:text-[#0D99FF] cursor-pointer transition-colors">Status</span>
+          <span class="text-neutral-300 dark:text-neutral-700">•</span>
+          <span class="inline-flex items-center gap-1.5 hover:text-[#0D99FF] cursor-pointer transition-colors">
+            <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+            <span>English (US)</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 9. Interactive Fullscreen Template Modal -->
+  <div id="preview-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-2 sm:p-6">
+    <!-- Backdrop blur -->
+    <div class="absolute inset-0 bg-black/70 modal-backdrop" onclick="closeTemplateModal()"></div>
+
+    <!-- Modal Content Window -->
+    <div class="relative w-full max-w-5xl max-h-[92vh] bg-white dark:bg-[#1E1E1E] rounded-2xl shadow-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden flex flex-col z-10 animate-in fade-in zoom-in duration-200">
+      
+      <!-- Modal Top Bar -->
+      <div class="h-14 px-5 border-b border-neutral-200 dark:border-neutral-800 flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3 overflow-hidden">
+          <div class="w-8 h-8 rounded-lg bg-[#0D99FF]/10 text-[#0D99FF] flex items-center justify-center flex-shrink-0">
+            <i data-lucide="layout" class="w-4 h-4"></i>
+          </div>
+          <div class="truncate">
+            <h2 id="modal-title" class="text-sm font-bold text-neutral-900 dark:text-white truncate"></h2>
+            <div class="flex items-center gap-1.5 text-xs text-[#0D99FF] font-medium">
+              <span>Custom Portfolio Website</span>
+              <span class="text-neutral-300 dark:text-neutral-700">•</span>
+              <span class="text-neutral-500 dark:text-neutral-400">Professional Studio Build</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="openPortfolioPricingModal(activeModalTemplate.id)" class="px-4 py-2 rounded-lg text-xs font-semibold bg-[#0D99FF] hover:bg-[#007BE5] text-white flex items-center gap-1.5 shadow-sm transition-all active:scale-95">
+            <span>Build My Portfolio</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+          <button onclick="closeTemplateModal()" class="p-1.5 rounded-lg text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body Split -->
+      <div class="flex-1 overflow-y-auto flex flex-col lg:flex-row">
+        
+        <!-- Left Visual Gallery Stage -->
+        <div class="lg:w-2/3 bg-neutral-950 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-neutral-800 min-h-[380px]">
+          <!-- Interactive Preview Slide -->
+          <div id="modal-slide-container" class="flex-1 flex items-center justify-center">
+            <!-- Rendered in app.js -->
+          </div>
+
+          <!-- Slide Tabs Footer -->
+          <div id="modal-slide-tabs" class="p-3 bg-neutral-900/90 border-t border-neutral-800 flex items-center justify-center gap-1.5 overflow-x-auto no-scrollbar">
+            <!-- Tabs in app.js -->
+          </div>
+        </div>
+
+        <!-- Right Metadata & Comments Panel -->
+        <div class="lg:w-1/3 p-5 flex flex-col justify-between overflow-y-auto max-h-[500px] lg:max-h-none space-y-6">
+          <div>
+            <!-- Stats -->
+            <div id="modal-stats" class="flex items-center gap-4 pb-4 border-b border-neutral-200 dark:border-neutral-800"></div>
+
+            <!-- Description -->
+            <div class="py-4 border-b border-neutral-200 dark:border-neutral-800">
+              <h4 class="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">Overview</h4>
+              <p id="modal-desc" class="text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed"></p>
+            </div>
+
+            <!-- File Specs -->
+            <div class="py-4 border-b border-neutral-200 dark:border-neutral-800">
+              <h4 class="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">File Info</h4>
+              <div id="modal-specs" class="space-y-1"></div>
+            </div>
+
+            <!-- Tags -->
+            <div class="py-4 border-b border-neutral-200 dark:border-neutral-800">
+              <h4 class="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">Tags</h4>
+              <div id="modal-tags" class="flex flex-wrap gap-1.5"></div>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="pt-4">
+              <h4 class="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-3">Community Reviews</h4>
+              <div id="modal-comments-list" class="space-y-3 mb-4"></div>
+
+              <!-- New Comment Input -->
+              <div class="flex gap-2">
+                <input 
+                  type="text" 
+                  id="new-comment-input" 
+                  placeholder="Add a review or comment..." 
+                  onkeydown="if(event.key==='Enter') submitComment()"
+                  class="flex-1 px-3 py-1.5 rounded-lg text-xs bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white outline-none focus:border-[#0D99FF]"
+                />
+                <button onclick="submitComment()" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:opacity-90">
+                  Post
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 9. Dedicated Pricing Confirmation Modal -->
+  <div id="pricing-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-6">
+    <!-- Backdrop blur -->
+    <div class="absolute inset-0 bg-black/75 modal-backdrop" onclick="closePortfolioPricingModal()"></div>
+
+    <!-- Modal Content Window -->
+    <div class="pricing-modal-box relative w-full max-w-lg bg-white dark:bg-[#1E1E1E] rounded-2xl shadow-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden flex flex-col z-10">
+      
+      <!-- Top header -->
+      <div class="px-6 py-4 border-b border-neutral-100 dark:border-neutral-800 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-2.5 h-2.5 rounded-full bg-[#0D99FF]"></div>
+          <h3 class="text-xs font-bold text-neutral-900 dark:text-white uppercase tracking-wider">Build Your Portfolio</h3>
+        </div>
+        <button onclick="closePortfolioPricingModal()" class="p-1 rounded-lg text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 space-y-5">
+        <!-- Selected Design Preview Card -->
+        <div class="flex gap-4 items-center p-3.5 rounded-xl bg-neutral-50 dark:bg-[#141414] border border-neutral-200/80 dark:border-neutral-800">
+          <div class="w-24 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-neutral-200 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
+            <img id="pricing-modal-image" src="" alt="Selected portfolio design" class="w-full h-full object-cover object-top" onerror="this.style.display='none'"/>
+          </div>
+          <div class="min-w-0 flex-1">
+            <h4 id="pricing-modal-title" class="text-sm font-bold text-neutral-900 dark:text-white truncate"></h4>
+            <p class="text-xs font-semibold text-[#0D99FF] mt-0.5">Custom Portfolio Website</p>
+            <p id="pricing-modal-desc" class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5 line-clamp-2 leading-relaxed">Professionally customized &amp; launched for you</p>
+          </div>
+        </div>
+
+        <!-- Pricing Breakdown Card -->
+        <div class="p-4 rounded-xl bg-neutral-100/70 dark:bg-[#252525] border border-neutral-200 dark:border-neutral-700/60 space-y-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-neutral-600 dark:text-neutral-400 font-medium">Original Price</span>
+            <span id="pricing-modal-original" class="text-neutral-500 dark:text-neutral-400 line-through font-semibold">₹2,999</span>
+          </div>
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-neutral-600 dark:text-neutral-400 font-medium">Limited Studio Discount</span>
+            <span id="pricing-modal-discount" class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700">20% OFF</span>
+          </div>
+          <div class="pt-3 border-t border-neutral-200 dark:border-neutral-700 flex items-baseline justify-between">
+            <div>
+              <div class="text-xs font-bold text-neutral-800 dark:text-neutral-200">You Pay</div>
+              <div class="text-[10px] text-neutral-500 dark:text-neutral-400">Complete custom build &amp; setup</div>
+            </div>
+            <span id="pricing-modal-final" class="text-2xl font-black text-neutral-900 dark:text-white">₹2,399</span>
+          </div>
+        </div>
+
+        <!-- Service Inclusions List -->
+        <div class="space-y-2 text-xs text-neutral-600 dark:text-neutral-300">
+          <div class="flex items-center gap-2">
+            <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-500 flex-shrink-0"></i>
+            <span>Tailored with your projects, case studies, resume &amp; branding</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-500 flex-shrink-0"></i>
+            <span>Mobile-responsive, modern animations &amp; SEO-optimized</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-500 flex-shrink-0"></i>
+            <span>Fast turnaround delivered in 3–5 business days</span>
+          </div>
+        </div>
+
+        <p class="text-xs text-neutral-500 dark:text-neutral-400 text-center leading-relaxed">
+          Get this portfolio design professionally customized and built for you.
+        </p>
+
+        <!-- CTA Button -->
+        <button 
+          id="pricing-whatsapp-btn"
+          onclick="openWhatsAppForCurrentPricingModal()" 
+          class="btn-whatsapp w-full py-3 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2.5 shadow-lg active:scale-[0.99] transition-all cursor-pointer"
+        >
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+          </svg>
+          <span>Build My Portfolio on WhatsApp</span>
+        </button>
+
+        <div class="text-[11px] text-center text-neutral-400 flex items-center justify-center gap-2">
+          <span>🔒 Direct consultation</span>
+          <span>•</span>
+          <span>No automated bots</span>
+          <span>•</span>
+          <span>Quick response</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 rounded-xl shadow-2xl text-xs font-medium opacity-0 translate-y-4 pointer-events-none transition-all duration-200">
+    <i id="toast-icon" data-lucide="check-circle" class="w-4 h-4 text-emerald-400 dark:text-emerald-600"></i>
+    <span id="toast-message">Notification message</span>
+  </div>
+
+  <!-- Application Logic -->
+  <script src="templateGenerator.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
